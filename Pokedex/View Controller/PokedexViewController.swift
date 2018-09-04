@@ -25,6 +25,21 @@ class PokedexViewController: UIViewController, UISearchBarDelegate {
         searchBar.delegate = self
         setUpUi()
     }
+//    @IBAction func SpinBall(_ sender: Any) {
+//
+//        randomPoke()
+//    }
+    
+    //shake
+    override func becomeFirstResponder() -> Bool {
+        return true
+    }
+    override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
+        if motion == .motionShake {
+            randomPoke()
+        }
+    }
+    
     
     func setUpUi(){
         view.addVerticalGradientLayer(topColor: #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1), bottomColor: #colorLiteral(red: 0.3176470697, green: 0.07450980693, blue: 0.02745098062, alpha: 1))
@@ -80,6 +95,32 @@ class PokedexViewController: UIViewController, UISearchBarDelegate {
         let cancel = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
         alert.addAction(cancel)
         present(alert, animated: true, completion: nil)
+    }
+    
+    func randomPoke(){
+        pokemonImageView.PokeSpin(pokemonImageView: pokemonImageView)
+        
+        let randomNum = String(arc4random_uniform(802))
+        
+        PokemonController.shared.fetchPokemon(by: randomNum) { (pokemon) in
+            guard let pokemon = pokemon else {self.presentAlert(); return}
+            DispatchQueue.main.async {
+                self.nameLabel.text = "Name: \(pokemon.name.capitalized)"
+                self.idLabel.text = "ID: \(pokemon.id)"
+                self.abilitiesLabel.text = "Abilities: \(pokemon.abilitiesName.joined(separator: ", ").capitalized)"
+            }
+            PokemonController.shared.fetchImage(pokemon: pokemon, completion: { (image) in
+                if image != nil {
+                    DispatchQueue.main.async {
+                        self.pokemonImageView.image = image
+                        //stop spin
+                        self.pokemonImageView.layer.removeAllAnimations()
+                    }
+                }else{
+                    self.presentAlert()
+                }
+            })
+        }
     }
 }
 
