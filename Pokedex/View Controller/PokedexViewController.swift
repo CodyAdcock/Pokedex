@@ -35,6 +35,7 @@ class PokedexViewController: UIViewController, UISearchBarDelegate {
         pokemonImageView.layer.shadowColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         pokemonImageView.layer.shadowRadius = 3
         pokemonImageView.layer.shadowOpacity = 1
+        //Labels
         nameLabel.textColor = .white
         nameLabel.shadowColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         idLabel.textColor = .white
@@ -45,11 +46,13 @@ class PokedexViewController: UIViewController, UISearchBarDelegate {
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        pokemonImageView.PokeSpin(pokemonImageView: pokemonImageView)
+
         guard let pokemonText = searchBar.text?.lowercased() else {return}
         PokemonController.shared.fetchPokemon(by: pokemonText) { (pokemon) in
             guard let pokemon = pokemon else {self.presentAlert(); return}
             DispatchQueue.main.async {
-                
                 self.nameLabel.text = "Name: \(pokemon.name.capitalized)"
                 self.idLabel.text = "ID: \(pokemon.id)"
                 self.abilitiesLabel.text = "Abilities: \(pokemon.abilitiesName.joined(separator: ", ").capitalized)"
@@ -58,6 +61,8 @@ class PokedexViewController: UIViewController, UISearchBarDelegate {
                 if image != nil {
                     DispatchQueue.main.async {
                         self.pokemonImageView.image = image
+                        //stop spin
+                        self.pokemonImageView.layer.removeAllAnimations()
                     }
                 }else{
                     self.presentAlert()
@@ -67,6 +72,7 @@ class PokedexViewController: UIViewController, UISearchBarDelegate {
         
         //dismiss keyboard
         searchBar.resignFirstResponder()
+
     }
     
     func presentAlert(){
@@ -74,5 +80,19 @@ class PokedexViewController: UIViewController, UISearchBarDelegate {
         let cancel = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
         alert.addAction(cancel)
         present(alert, animated: true, completion: nil)
+    }
+}
+
+
+extension UIImageView{
+    func PokeSpin(pokemonImageView: UIImageView){
+        //Spin
+        let rotation: CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
+        rotation.toValue = Double.pi * 2
+        rotation.duration = 0.25 // or however long you want ...
+        rotation.isCumulative = true
+        rotation.repeatCount = Float.greatestFiniteMagnitude
+        pokemonImageView.image = #imageLiteral(resourceName: "pokemonBall")
+        pokemonImageView.layer.add(rotation, forKey: "rotationAnimation")
     }
 }
