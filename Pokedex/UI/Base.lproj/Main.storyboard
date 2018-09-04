@@ -1,24 +1,109 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" systemVersion="17A277" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hnW-Tv-0iH">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Knockoff Pokedex-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="PokedexViewController" customModule="Pokedex" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pokemonBall" translatesAutoresizingMaskIntoConstraints="NO" id="spj-4A-ONK">
+                                <rect key="frame" x="87" y="273.5" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="KlT-lv-U3K"/>
+                                    <constraint firstAttribute="width" secondItem="spj-4A-ONK" secondAttribute="height" multiplier="1:1" id="zOd-LY-zSw"/>
+                                </constraints>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="nnF-3v-6yS">
+                                <rect key="frame" x="37" y="139.5" width="300" height="58"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MSI-wy-Seq">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ID:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gQe-5M-XTm">
+                                        <rect key="frame" x="0.0" y="34" width="300" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Xq7-0h-lH0">
+                                <rect key="frame" x="0.0" y="64" width="375" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Abilities: " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wt6-at-RXa">
+                                <rect key="frame" x="37" y="566.5" width="300" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Xq7-0h-lH0" firstAttribute="centerX" secondItem="Wt6-at-RXa" secondAttribute="centerX" id="391-4K-BZQ"/>
+                            <constraint firstItem="spj-4A-ONK" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="40" id="41C-mk-n0t"/>
+                            <constraint firstItem="Xq7-0h-lH0" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="4iU-RF-0wr"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Wt6-at-RXa" secondAttribute="bottom" constant="80" id="EVu-f8-JoT"/>
+                            <constraint firstItem="Wt6-at-RXa" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.8" id="HtY-ZY-qRV"/>
+                            <constraint firstItem="Xq7-0h-lH0" firstAttribute="centerX" secondItem="nnF-3v-6yS" secondAttribute="centerX" id="KrI-wT-lG0"/>
+                            <constraint firstItem="nnF-3v-6yS" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.8" id="NIW-5w-7Wn"/>
+                            <constraint firstItem="nnF-3v-6yS" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Q1m-9y-Lbm"/>
+                            <constraint firstItem="spj-4A-ONK" firstAttribute="top" secondItem="nnF-3v-6yS" secondAttribute="bottom" constant="76" id="XGO-vS-gAR"/>
+                            <constraint firstItem="Xq7-0h-lH0" firstAttribute="centerX" secondItem="spj-4A-ONK" secondAttribute="centerX" id="h3G-xp-js5"/>
+                            <constraint firstItem="Xq7-0h-lH0" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="icG-9o-wMS"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Knockoff Pokedex" largeTitleDisplayMode="always" id="UJv-Px-Pqj"/>
+                    <connections>
+                        <outlet property="abilitiesLabel" destination="Wt6-at-RXa" id="Ndx-ke-YLh"/>
+                        <outlet property="idLabel" destination="gQe-5M-XTm" id="Sg2-ei-jcK"/>
+                        <outlet property="nameLabel" destination="MSI-wy-Seq" id="sn5-22-UMW"/>
+                        <outlet property="pokemonImageView" destination="spj-4A-ONK" id="Rwu-aC-KJ4"/>
+                        <outlet property="searchBar" destination="Xq7-0h-lH0" id="LVI-rf-mX0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="972" y="33.733133433283363"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Bl8-XI-A3a">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hnW-Tv-0iH" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="pkh-m5-wig">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="XgQ-Qe-waO"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="32f-TV-h2i" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="32.799999999999997" y="33.733133433283363"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="pokemonBall" width="720" height="720"/>
+    </resources>
 </document>
