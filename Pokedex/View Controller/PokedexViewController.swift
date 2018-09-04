@@ -23,6 +23,25 @@ class PokedexViewController: UIViewController, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
+        setUpUi()
+    }
+    
+    func setUpUi(){
+        view.addVerticalGradientLayer(topColor: #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1), bottomColor: #colorLiteral(red: 0.3176470697, green: 0.07450980693, blue: 0.02745098062, alpha: 1))
+//        pokemonImageView.layer.borderColor = UIColor.white.cgColor
+//        pokemonImageView.layer.borderWidth = 1.5
+//        pokemonImageView.layer.cornerRadius = 5
+        pokemonImageView.layer.shadowOffset = CGSize(width: 3, height: 4)
+        pokemonImageView.layer.shadowColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        pokemonImageView.layer.shadowRadius = 3
+        pokemonImageView.layer.shadowOpacity = 1
+        nameLabel.textColor = .white
+        nameLabel.shadowColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        idLabel.textColor = .white
+        idLabel.shadowColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        abilitiesLabel.textColor = .white
+        abilitiesLabel.shadowColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
